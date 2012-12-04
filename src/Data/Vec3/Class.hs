@@ -6,12 +6,16 @@ module Data.Vec3.Class
 
 where
 
--- | Three-dimensional vector and matrix.
+import Prelude hiding (zipWith)
+
+-- | Three-dimensional vector, with an associated matrix type.
 class Vec3 v where
     data Matrix v
 
     -- | Origin point @(0, 0, 0)@.
     origin         :: v
+    origin          = fromXYZ (0, 0, 0)
+    {-# INLINE origin #-}
 
     -- | Construct a new vector from components.
     fromXYZ        :: (Double, Double, Double) -> v
@@ -19,20 +23,43 @@ class Vec3 v where
     -- | Deconstruct a vector into components.
     toXYZ          :: v -> (Double, Double, Double)
 
+    zipWith        :: (Double -> Double -> Double) -> v -> v -> v
+    zipWith f v1 v2 = fromXYZ (f x1 x2, f y1 y2, f z1 z2)
+                      where
+                        (x1, y1, z1) = toXYZ v1
+                        (x2, y2, z2) = toXYZ v2
+    {-# INLINE zipWith #-}
+
     -- | Add two vectors.
     (<+>)          :: v -> v -> v
+    (<+>) v1 v2     = zipWith (+) v1 v2
+    {-# INLINE (<+>) #-}
 
     -- | Subtract two vectors.
     (<->)          :: v -> v -> v
+    (<->) v1 v2     = zipWith (-) v1 v2
+    {-# INLINE (<->) #-}
 
     -- | Cross product.
     (><)           :: v -> v -> v
+    (><) v1 v2      = fromXYZ (y1 * z2 - y2 * z1,
+                               x2 * z1 - x1 * z2,
+                               x1 * y2 - x2 * y1)
+                      where
+                        (x1, y1, z1) = toXYZ v1
+                        (x2, y2, z2) = toXYZ v2
 
     -- | Scale a vector.
     (.^)           :: v -> Double -> v
+    (.^) v s        = fromXYZ (x * s, y * s, z * s)
+                      where
+                        (x, y, z) = toXYZ v
 
     -- | Dot product.
     (.*)           :: v -> v -> Double
+    (.*) v1 v2      = x + y + z
+                      where
+                        (x, y, z) = toXYZ $ zipWith (*) v1 v2
 
     -- | Euclidean norm of a vector.
     norm           :: v -> Double
@@ -50,9 +77,9 @@ class Vec3 v where
     distance v1 v2  = norm (v1 <-> v2)
     {-# INLINE distance #-}
 
-    -- | Scale vector by -1.
+    -- | Invert the direction of a vector.
     invert         :: v -> v
-    invert v        = v .^ (-1)
+    invert v        = origin <-> v
     {-# INLINE invert #-}
 
 
@@ -72,8 +99,9 @@ class Vec3 v where
 
     -- | Multiply matrix and vector.
     mxv            :: Matrix v -> v -> v
-    mxv m v         = case toRows m of
-                        (r1, r2, r3) -> fromXYZ (r1 .* v, r2 .* v, r3 .* v)
+    mxv m v         = fromXYZ (r1 .* v, r2 .* v, r3 .* v)
+                      where
+                        (r1, r2, r3) = toRows m
     {-# INLINE mxv #-}
 
     -- | Build a diagonal matrix from a number.
@@ -87,16 +115,18 @@ class Vec3 v where
     -- | Transpose vector and multiply it by another vector, producing a
     -- matrix.
     vxv            :: v -> v -> Matrix v
-    vxv v1 v2       = case toXYZ v1 of
-                        (v11, v12, v13) ->
-                            fromRows (v2 .^ v11, v2 .^ v12, v2 .^ v13)
+    vxv v1 v2       = fromRows (v2 .^ v11, v2 .^ v12, v2 .^ v13)
+                      where
+                        (v11, v12, v13) = toXYZ v1
+
     {-# INLINE vxv #-}
 
     -- | Add two matrices.
     addM           :: Matrix v -> Matrix v -> Matrix v
-    addM m1 m2      = case (toRows m1, toRows m2) of
-                        ((r11, r12, r13),
-                         (r21, r22, r23)) -> fromRows (r11 <+> r21,
-                                                       r12 <+> r22,
-                                                       r13 <+> r23)
+    addM m1 m2      = fromRows (r11 <+> r21,
+                                r12 <+> r22,
+                                r13 <+> r23)
+                      where
+                        (r11, r12, r13) = toRows m1
+                        (r21, r22, r23) = toRows m2
     {-# INLINE addM #-}
