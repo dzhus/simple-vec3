@@ -32,10 +32,10 @@ newtype TUVec3 = TUVec3 (Double, Double, Double)
 
 instance Vec3 TUVec3 where
     newtype Matrix TUVec3 = TUMatrix (TUVec3, TUVec3, TUVec3)
-                           deriving (Eq, Show,
-                                     VG.Vector VU.Vector,
-                                     VG.MVector VU.MVector,
-                                     VU.Unbox)
+                            deriving (Eq, Show,
+                                      VG.Vector VU.Vector,
+                                      VG.MVector VU.MVector,
+                                      VU.Unbox)
 
 
     fromXYZ v = TUVec3 v
