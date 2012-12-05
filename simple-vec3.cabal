@@ -25,3 +25,14 @@ library
   build-depends:
     base        == 4.6.*,
     vector      == 0.10.*
+
+executable vec3-benchmark
+   main-is: benchmark/Benchmark.hs
+
+   ghc-options: -Wall -O2 -fllvm -rtsopts
+
+   build-depends:
+     base       == 4.6.*,
+     criterion  == 0.6.*,
+     simple-vec3,
+     vector     == 0.10.*
