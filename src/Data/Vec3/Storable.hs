@@ -1,13 +1,6 @@
 {-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TypeFamilies #-}
 
-{-|
-
-'Vec3' implementation with 'Foreign.Storable.Storable' instance,
-suitable for use with "Data.Vector.Storable".
-
--}
-
 module Data.Vec3.Storable
     ( SVec3(..)
     )
@@ -24,6 +17,8 @@ import Foreign.C.Types
 import Data.Vec3.Class
 
 
+-- | 'Vec3' implementation with 'Foreign.Storable.Storable' instance,
+-- suitable for use with "Data.Vector.Storable".
 data SVec3 = SVec3 !CDouble !CDouble !CDouble
              deriving (Eq, Show)
 

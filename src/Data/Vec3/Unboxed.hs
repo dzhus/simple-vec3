@@ -2,14 +2,6 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 
-{-|
-
-'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' instance based
-on single array storage scheme, suitable for use with
-"Data.Vector.Unboxed".
-
--}
-
 module Data.Vec3.Unboxed
     ( UVec3(..)
     )
@@ -27,6 +19,21 @@ import Data.Vector.Generic.Mutable as VGM
 import Data.Vec3.Class
 
 
+-- | 'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' instance
+-- based on a single contiguous array storage scheme, suitable for use
+-- with "Data.Vector.Unboxed".
+--
+-- 'Unbox' instance provides the required index transformations.
+--
+-- @
+-- interface: [d1 x   y   z  ; d2 x   y   z  ...], length = N = M / 3
+--                |   |   |       |   |   |
+-- storage:   [  d1x d2y d2z ;   d2x d2y d2z ...], length = M
+-- @
+--
+-- Thanks to dense packing scheme the performance of this
+-- implementation should generally be on par with 'Storable'-based
+-- 'SVec'.
 data UVec3 = UVec3 !Double !Double !Double
               deriving (Eq, Show)
 
@@ -114,5 +121,5 @@ instance VG.Vector VU.Vector UVec3 where
     basicUnsafeCopy (MV_UVec3 mv) (V_UVec3 v)
         = VG.basicUnsafeCopy mv v
     {-# INLINE basicUnsafeCopy #-}
- 
+
 instance Unbox UVec3

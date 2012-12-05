@@ -1,13 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE TypeFamilies #-}
 
-{-|
-
-'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' instance based
-on tuples, suitable for use with "Data.Vector.Unboxed".
-
--}
-
 module Data.Vec3.TUnboxed
     ( TUVec3(..)
     )
@@ -23,6 +16,20 @@ import Data.Vector.Generic.Mutable as VG
 import Data.Vec3.Class
 
 
+-- | 'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' instance
+-- based on tuples, suitable for use with "Data.Vector.Unboxed".
+--
+-- This represents 3-vector as a triple of doubles, using the default
+-- Unbox instance for tuples as provided by "Data.Vector.Unboxed",
+-- which wraps a vector of tuples as a tuple of vectors.
+--
+-- @
+-- interface:  [d1 (x, y, z); d2 (x, y, z) ...], length = N
+--                  |  |  |       |  |  |
+-- storage(x): [d1x-+  |  | ; d2x-+  |  |  ...], length = N
+-- storage(y): [d1y----+  | ; d2y----+  |  ...], length = N
+-- storage(z): [d1z-------+ ; d2z-------+  ...], length = N
+-- @
 newtype TUVec3 = TUVec3 (Double, Double, Double)
                 deriving (Eq, Show,
                           VG.Vector VU.Vector,

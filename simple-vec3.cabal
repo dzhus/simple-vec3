@@ -1,6 +1,13 @@
 name:                simple-vec3
 version:             0.1.0.0
 synopsis:            Three-dimensional vectors of doubles with basic operations
+
+description:         We provide a class of 3-vectors with a set of basic
+                     methods for geometry operations on vector and an
+                     associated matrix type. Several instances are
+                     provided for use with "Data.Vector.Unboxed" and
+                     "Data.Vector.Storable" as container types.
+
 homepage:            http://github.com/dzhus/simple-vec3
 license:             BSD3
 license-file:        LICENSE
@@ -26,7 +33,7 @@ library
     base        == 4.6.*,
     vector      == 0.10.*
 
-executable vec3-benchmark
+executable simple-vec3-benchmark
    main-is: benchmark/Benchmark.hs
 
    ghc-options: -Wall -O2 -fllvm -rtsopts
