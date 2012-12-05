@@ -10,6 +10,7 @@ import Prelude hiding (zipWith)
 
 -- | Three-dimensional vector, with an associated matrix type.
 class Vec3 v where
+    -- | Associated type for 3×3 matrix.
     data Matrix v
 
     -- | Origin point @(0, 0, 0)@.
@@ -23,6 +24,7 @@ class Vec3 v where
     -- | Deconstruct a vector into components.
     toXYZ          :: v -> (Double, Double, Double)
 
+    -- | Zip two vectors elementwise.
     zipWith        :: (Double -> Double -> Double) -> v -> v -> v
     zipWith f v1 v2 = fromXYZ (f x1 x2, f y1 y2, f z1 z2)
                       where
@@ -93,18 +95,42 @@ class Vec3 v where
     --
     -- Multiply the transpose of the first vector by the given matrix,
     -- then multiply the result by the second vector.
+    --
+    -- @
+    --                     [ a11  a12  a13 ]   [ v2x ]
+    --                     [               ]   [     ]
+    -- [ v1x  v1y  v1z ] . [ a21  a22  a23 ] . [ v2y ] = s
+    --                     [               ]   [     ]
+    --                     [ a31  a32  a33 ]   [ v2z ]
+    -- @
     dotM           :: v -> v -> Matrix v -> Double
     dotM v1 v2 m    = v1 .* (m `mxv` v2)
     {-# INLINE dotM #-}
 
-    -- | Multiply matrix and vector.
+    -- | Multiply a matrix and a vector.
+    --
+    -- @
+    -- [ a11  a12  a13 ]   [ v2x ]   [ rx ]
+    -- [               ]   [     ]   [    ]
+    -- [ a21  a22  a23 ] . [ v2y ] = [ ry ]
+    -- [               ]   [     ]   [    ]
+    -- [ a31  a32  a33 ]   [ v2z ]   [ rz ]
+    -- @
     mxv            :: Matrix v -> v -> v
     mxv m v         = fromXYZ (r1 .* v, r2 .* v, r3 .* v)
                       where
                         (r1, r2, r3) = toRows m
     {-# INLINE mxv #-}
 
-    -- | Build a diagonal matrix from a number.
+    -- | Build a diagonal matrix from a number @d@.
+    --
+    -- @
+    -- [ d  0  0 ]
+    -- [         ]
+    -- [ 0  d  0 ]
+    -- [         ]
+    -- [ 0  0  d ]
+    -- @
     diag           :: Double -> Matrix v
     diag d          = fromRows
                       (fromXYZ (d, 0, 0),
@@ -112,8 +138,16 @@ class Vec3 v where
                        fromXYZ (0, 0, d))
     {-# INLINE diag #-}
 
-    -- | Transpose vector and multiply it by another vector, producing a
-    -- matrix.
+    -- | Transpose a vector and multiply it by another vector,
+    -- producing a matrix.
+    -- 
+    -- @
+    -- [ v1x ]                       [ r11  r12  r13 ]
+    -- [     ]                       [               ]
+    -- [ v1y ] . [ v2x  v2y  v2z ] = [ r21  r22  r23 ]
+    -- [     ]                       [               ]
+    -- [ v1z ]                       [ r31  r32  r33 ]
+    -- @
     vxv            :: v -> v -> Matrix v
     vxv v1 v2       = fromRows (v2 .^ v11, v2 .^ v12, v2 .^ v13)
                       where

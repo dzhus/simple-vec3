@@ -33,7 +33,7 @@ import Data.Vec3.Class
 --
 -- Thanks to dense packing scheme the performance of this
 -- implementation should generally be on par with 'Storable'-based
--- 'SVec'.
+-- 'Data.Vec3.SVec3'.
 data UVec3 = UVec3 !Double !Double !Double
               deriving (Eq, Show)
 

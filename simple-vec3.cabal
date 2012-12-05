@@ -2,20 +2,26 @@ name:                simple-vec3
 version:             0.1.0.0
 synopsis:            Three-dimensional vectors of doubles with basic operations
 
-description:         We provide a class of 3-vectors with a set of basic
-                     methods for geometry operations on vector and an
-                     associated matrix type. Several instances are
-                     provided for use with "Data.Vector.Unboxed" and
+description:         A class of 3-vectors with a set of basic methods for
+                     geometry operations on vector and an associated
+                     matrix type. Several instances are provided for
+                     use with "Data.Vector.Unboxed" and
                      "Data.Vector.Storable" as container types.
 
-homepage:            http://github.com/dzhus/simple-vec3
+homepage:            http://github.com/dzhus/simple-vec3/
 license:             BSD3
 license-file:        LICENSE
 author:              Dmitry Dzhus
 maintainer:          <dima@dzhus.org>
 category:            Math, Numerical
+
 build-type:          Simple
 cabal-version:       >=1.8
+tested-with:         GHC == 7.6.1
+
+source-repository head
+  type:     git
+  location: http://github.com/dzhus/simple-vec3/
 
 library
   hs-source-dirs: src
