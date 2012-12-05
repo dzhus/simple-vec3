@@ -3,7 +3,7 @@ version:             0.1.0.0
 synopsis:            Three-dimensional vectors of doubles with basic operations
 
 description:         A class of 3-vectors with a set of basic methods for
-                     geometry operations on vector and an associated
+                     geometry operations on vectors and an associated
                      matrix type. Several instances are provided for
                      use with "Data.Vector.Unboxed" and
                      "Data.Vector.Storable" as container types.
