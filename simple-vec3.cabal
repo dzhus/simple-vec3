@@ -1,6 +1,8 @@
 name:                simple-vec3
 version:             0.1.0.0
-synopsis:            Three-dimensional vectors of doubles with basic operations
+
+synopsis:            Three-dimensional vectors of doubles with basic operations,
+                     with Unbox and Storable interface
 
 description:         A class of 3-vectors with a set of basic methods for
                      geometry operations on vectors and an associated
