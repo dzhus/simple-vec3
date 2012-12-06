@@ -25,10 +25,6 @@ source-repository head
   type:     git
   location: http://github.com/dzhus/simple-vec3/
 
-flag benchmark
-  description: Build a benchmark executable.
-  default:     False
-
 library
   hs-source-dirs: src
 
@@ -45,17 +41,14 @@ library
     base        == 4.6.*,
     vector      == 0.10.*
 
-executable simple-vec3-benchmark
-   if flag(benchmark)
-     buildable: True
-     build-depends:
-       base       == 4.6.*,
-       criterion  == 0.6.*,
-       simple-vec3,
-       vector     == 0.10.*
-   else
-     buildable: False
-
+benchmark simple-vec3-benchmark
+   type:    exitcode-stdio-1.0
    main-is: benchmark/Benchmark.hs
 
    ghc-options: -Wall -O2 -fllvm -rtsopts
+
+   build-depends:
+     base       == 4.6.*,
+     criterion  == 0.6.*,
+     simple-vec3,
+     vector     == 0.10.*
