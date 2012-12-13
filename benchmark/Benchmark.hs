@@ -60,11 +60,11 @@ testDotM v v2 = do
 
 -- Note that source arrays are not forced in test functions.
 
-tv :: VU.Vector TUVec3
+tv :: VU.Vector UVec3
 tv = VG.replicate n $ fromXYZ oXYZ
 
 
-uv :: VU.Vector UVec3
+uv :: VU.Vector SVec3
 uv = VG.replicate n $ fromXYZ oXYZ
 
 
@@ -72,11 +72,11 @@ sv :: VS.Vector SVec3
 sv = VG.replicate n $ fromXYZ oXYZ
 
 
-tv' :: VU.Vector TUVec3
+tv' :: VU.Vector UVec3
 tv' = VG.replicate n $ fromXYZ oXYZ'
 
 
-uv' :: VU.Vector UVec3
+uv' :: VU.Vector SVec3
 uv' = VG.replicate n $ fromXYZ oXYZ'
 
 
@@ -88,11 +88,11 @@ bsv :: VS.Vector SVec3
 bsv = VG.replicate bigN $ fromXYZ oXYZ
 
 
-buv :: VU.Vector UVec3
+buv :: VU.Vector SVec3
 buv = VG.replicate bigN $ fromXYZ oXYZ
 
 
-btv :: VU.Vector TUVec3
+btv :: VU.Vector UVec3
 btv = VG.replicate bigN $ fromXYZ oXYZ
 
 
@@ -100,43 +100,43 @@ bsv' :: VS.Vector SVec3
 bsv' = VG.replicate bigN $ fromXYZ oXYZ'
 
 
-buv' :: VU.Vector UVec3
+buv' :: VU.Vector SVec3
 buv' = VG.replicate bigN $ fromXYZ oXYZ'
 
 
-btv' :: VU.Vector TUVec3
+btv' :: VU.Vector UVec3
 btv' = VG.replicate bigN $ fromXYZ oXYZ'
 
 
 main = defaultMain
        [ bgroup "zipWith"
-                    [ bench "Storable"             $ test sv sv'
-                    , bench "Unboxed (contiguous)" $ test uv uv'
-                    , bench "Unboxed (tuples)"     $ test tv tv'
+                    [ bench "SVec/Storable"        $ test sv sv'
+                    , bench "SVec/Unboxed"         $ test uv uv'
+                    , bench "UVec/Unboxed"         $ test tv tv'
                     ]
        , bgroup "zipWith-by-x"
-                    [ bench "Storable"             $ testComp sv sv'
-                    , bench "Unboxed (contiguous)" $ testComp uv uv'
-                    , bench "Unboxed (tuples)"     $ testComp tv tv'
+                    [ bench "SVec/Storable"        $ testComp sv sv'
+                    , bench "SVec/Unboxed"         $ testComp uv uv'
+                    , bench "UVec/Unboxed"         $ testComp tv tv'
                     ]
        , bgroup "zipWith-dotM"
-                    [ bench "Storable"             $ testDotM sv sv'
-                    , bench "Unboxed (contiguous)" $ testDotM uv uv'
-                    , bench "Unboxed (tuples)"     $ testDotM tv tv'
+                    [ bench "SVec/Storable"        $ testDotM sv sv'
+                    , bench "SVec/Unboxed"         $ testDotM uv uv'
+                    , bench "UVec/Unboxed"         $ testDotM tv tv'
                     ]
        , bgroup "zipWith 10M"
-                    [ bench "Storable"             $ test bsv bsv'
-                    , bench "Unboxed (contiguous)" $ test buv buv'
-                    , bench "Unboxed (tuples)"     $ test btv btv'
+                    [ bench "SVec/Storable"        $ test bsv bsv'
+                    , bench "SVec/Unboxed"         $ test buv buv'
+                    , bench "UVec/Unboxed"         $ test btv btv'
                     ]
        , bgroup "zipWith-by-x 10M"
-                    [ bench "Storable"             $ testComp bsv bsv'
-                    , bench "Unboxed (contiguous)" $ testComp buv buv'
-                    , bench "Unboxed (tuples)"     $ testComp btv btv'
+                    [ bench "SVec/Storable"        $ testComp bsv bsv'
+                    , bench "SVec/Unboxed"         $ testComp buv buv'
+                    , bench "UVec/Unboxed"         $ testComp btv btv'
                     ]
        , bgroup "zipWith-dotM 10M"
-                    [ bench "Storable"             $ testDotM bsv bsv'
-                    , bench "Unboxed (contiguous)" $ testDotM buv buv'
-                    , bench "Unboxed (tuples)"     $ testDotM btv btv'
+                    [ bench "SVec/Storable"        $ testDotM bsv bsv'
+                    , bench "SVec/Unboxed"         $ testDotM buv buv'
+                    , bench "UVec/Unboxed"         $ testDotM btv btv'
                     ]
        ]
