@@ -108,6 +108,7 @@ btv' :: VU.Vector UVec3
 btv' = VG.replicate bigN $ fromXYZ oXYZ'
 
 
+main :: IO ()
 main = defaultMain
        [ bgroup "zipWith"
                     [ bench "SVec/Storable"        $ test sv sv'
