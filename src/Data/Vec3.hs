@@ -151,6 +151,7 @@ instance Unbox SVec3
 
 instance Vec3 SVec3 where
     newtype Matrix SVec3 = SMatrix (SVec3, SVec3, SVec3)
+                           deriving (Eq, Show)
 
     fromXYZ (x, y, z) = SVec3 (CDouble x) (CDouble y) (CDouble z)
     {-# INLINE fromXYZ #-}
