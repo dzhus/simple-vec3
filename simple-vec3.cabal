@@ -32,6 +32,8 @@ library
   exposed-modules:
     Data.Vec3
     Data.Vec3.Class
+
+  other-modules:
     Data.Vec3.Unboxed
 
   build-depends:
