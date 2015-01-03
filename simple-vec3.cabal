@@ -1,5 +1,5 @@
 name:                simple-vec3
-version:             0.2.0.0
+version:             0.2.0.1
 
 synopsis:            Three-dimensional vectors of doubles with basic operations
 
@@ -35,17 +35,19 @@ library
     Data.Vec3.Unboxed
 
   build-depends:
-    base        == 4.6.*,
-    vector      == 0.10.*
+    base             >= 4.6 && < 4.8,
+    vector           == 0.10.*,
+    vector-th-unbox  == 0.2.*
 
 benchmark simple-vec3-benchmark
-   type:    exitcode-stdio-1.0
-   main-is: benchmark/Benchmark.hs
+  type:    exitcode-stdio-1.0
+  main-is: benchmark/Benchmark.hs
 
-   ghc-options: -Wall -O2 -fllvm -rtsopts
+  ghc-options: -Wall -O2 -fllvm -rtsopts
 
-   build-depends:
-     base       == 4.6.*,
-     criterion  == 0.6.*,
-     simple-vec3,
-     vector     == 0.10.*
+  build-depends:
+    base             >= 4.6 && < 4.8,
+    criterion        >= 0.6 && < 1.1,
+    simple-vec3,
+    vector           == 0.10.*,
+    vector-th-unbox  == 0.2.*

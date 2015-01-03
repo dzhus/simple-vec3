@@ -1,4 +1,6 @@
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 
 module Data.Vec3.Unboxed
@@ -9,9 +11,7 @@ where
 
 import Prelude hiding (reverse)
 
-import Data.Vector.Unboxed as VU
-import Data.Vector.Generic as VG
-import Data.Vector.Generic.Mutable as VG
+import Data.Vector.Unboxed.Deriving
 
 import Data.Vec3.Class
 
@@ -31,18 +31,18 @@ import Data.Vec3.Class
 -- storage(z): [d1z-------+ ; d2z-------+  ...], length = N
 -- @
 newtype UVec3 = UVec3 (Double, Double, Double)
-                deriving (Eq, Show,
-                          VG.Vector VU.Vector,
-                          VG.MVector VU.MVector,
-                          VU.Unbox)
+                deriving (Eq, Show)
+
+
+derivingUnbox "UVec3"
+  [t|UVec3 -> (Double, Double, Double)|]
+  [|\(UVec3 v) -> v|]
+  [|UVec3|]
 
 
 instance Vec3 UVec3 where
     newtype Matrix UVec3 = UMatrix (UVec3, UVec3, UVec3)
-                           deriving (Eq, Show,
-                                     VG.Vector VU.Vector,
-                                     VG.MVector VU.MVector,
-                                     VU.Unbox)
+                           deriving (Eq, Show)
 
 
     fromXYZ v = UVec3 v
@@ -56,3 +56,9 @@ instance Vec3 UVec3 where
 
     toRows (UMatrix (r1, r2, r3)) = (r1, r2, r3)
     {-# INLINE toRows #-}
+
+
+derivingUnbox "UMatrix"
+  [t|Matrix UVec3 -> (UVec3, UVec3, UVec3)|]
+  [|\(UMatrix v) -> v|]
+  [|UMatrix|]
