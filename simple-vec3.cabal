@@ -1,12 +1,12 @@
 name:                simple-vec3
-version:             0.2.0.1
+version:             0.3
 
 synopsis:            Three-dimensional vectors of doubles with basic operations
 
-description:         A class of 3-vectors with a set of basic methods for
-                     geometry operations on vectors and an associated
-                     matrix type. Several instances are provided for
-                     use with "Data.Vector.Unboxed" and
+description:         A class of 3-vectors with a set of basic methods
+                     for geometry operations on vectors and an
+                     associated matrix type. Instances are provided
+                     for use with "Data.Vector.Unboxed" and
                      "Data.Vector.Storable" as container types.
 
 homepage:            http://github.com/dzhus/simple-vec3/
@@ -18,7 +18,7 @@ category:            Math, Numerical
 
 build-type:          Simple
 cabal-version:       >=1.8
-tested-with:         GHC == 7.6.1
+tested-with:         GHC == 7.10.1
 
 source-repository head
   type:     git
@@ -37,7 +37,7 @@ library
     Data.Vec3.Unboxed
 
   build-depends:
-    base             >= 4.6 && < 4.8,
+    base             >= 4.6 && < 4.9,
     vector           == 0.10.*,
     vector-th-unbox  == 0.2.*
 
@@ -48,8 +48,8 @@ benchmark simple-vec3-benchmark
   ghc-options: -Wall -O2 -fllvm -rtsopts
 
   build-depends:
-    base             >= 4.6 && < 4.8,
-    criterion        >= 0.6 && < 1.1,
+    base             >= 4.6 && < 4.9,
+    criterion        == 1.1.*,
     simple-vec3,
     vector           == 0.10.*,
     vector-th-unbox  == 0.2.*
