@@ -1,5 +1,5 @@
-{-# LANGUAGE BangPatterns #-}
 {-# LANGUAGE FlexibleContexts #-}
+
 import Criterion.Main
 
 import Data.Vector.Generic as VG
@@ -20,14 +20,9 @@ oXYZ' = (2, 12, 85.06)
 n :: Int
 n = 1000000
 
+
 bigN :: Int
 bigN = n * 10
-
-foo :: Vec3 v => v -> v -> Double
-foo v1 v2 = x1 + x2
-    where
-      (x1, _, _) = toXYZ v1
-      (x2, _, _) = toXYZ v2
 
 
 -- Access to whole elements
@@ -37,7 +32,12 @@ testWhole v v2 = (uncurry $ VG.zipWith (<+>)) `whnf` (v, v2)
 
 -- Access to x components of elements
 testComp :: (Show a, Vec3 a, VG.Vector v a, VG.Vector v Double) => v a -> v a -> Benchmarkable
-testComp v v2 = (uncurry $ VG.zipWith foo) `whnf` (v, v2)
+testComp v v' = (uncurry $ VG.zipWith foo) `whnf` (v, v')
+  where
+    foo v1 v2 = x1 + x2
+      where
+        (x1, _, _) = toXYZ v1
+        (x2, _, _) = toXYZ v2
 
 
 -- zipWith using generic dot product
