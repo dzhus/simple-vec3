@@ -25,6 +25,8 @@ import Foreign.C.Types
 import Data.Vec3.Class
 import Data.Vec3.Unboxed
 
+import Test.QuickCheck
+
 
 -- | 'Vec3' implementation with 'Foreign.Storable.Storable' instance
 -- based on a single contiguous array storage scheme, suitable for use
@@ -78,3 +80,14 @@ instance Vec3 SVec3 where
 
     toRows (SMatrix (r1, r2, r3)) = (r1, r2, r3)
     {-# INLINE toRows #-}
+
+
+instance Arbitrary SVec3 where
+  arbitrary = do
+    x <- arbitrary
+    y <- arbitrary
+    z <- arbitrary
+    return $ fromXYZ (x, y, z)
+
+  shrink (SVec3 (CDouble x) (CDouble y) (CDouble z)) =
+    map fromXYZ $ shrink (x, y, z)

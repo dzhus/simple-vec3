@@ -38,6 +38,7 @@ library
 
   build-depends:
     base             >= 4.6 && < 4.9,
+    QuickCheck       == 2.8.*,
     vector           == 0.10.*,
     vector-th-unbox  == 0.2.*
 
@@ -50,6 +51,21 @@ benchmark simple-vec3-benchmark
   build-depends:
     base             >= 4.6 && < 4.9,
     criterion        == 1.1.*,
+    simple-vec3,
+    vector           == 0.10.*,
+    vector-th-unbox  == 0.2.*
+
+test-suite simple-vec3-test
+  type:    exitcode-stdio-1.0
+  main-is: tests/Tests.hs
+
+  ghc-options: -Wall -O2 -fllvm -rtsopts
+
+  build-depends:
+    base             >= 4.6 && < 4.9,
+    tasty            == 0.10.*,
+    tasty-quickcheck == 0.8.*,
+    tasty-th         == 0.1.*,
     simple-vec3,
     vector           == 0.10.*,
     vector-th-unbox  == 0.2.*
