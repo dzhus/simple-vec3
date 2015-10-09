@@ -37,10 +37,10 @@ library
     Data.Vec3.Unboxed
 
   build-depends:
-    base             >= 4.6 && < 4.9,
-    QuickCheck       == 2.8.*,
-    vector           == 0.10.*,
-    vector-th-unbox  == 0.2.*
+    base,
+    QuickCheck,
+    vector,
+    vector-th-unbox
 
 benchmark simple-vec3-benchmark
   type:    exitcode-stdio-1.0
@@ -49,11 +49,11 @@ benchmark simple-vec3-benchmark
   ghc-options: -Wall -O2 -fllvm -rtsopts
 
   build-depends:
-    base             >= 4.6 && < 4.9,
-    criterion        == 1.1.*,
+    base,
+    criterion,
     simple-vec3,
-    vector           == 0.10.*,
-    vector-th-unbox  == 0.2.*
+    vector,
+    vector-th-unbox
 
 test-suite simple-vec3-test
   type:    exitcode-stdio-1.0
@@ -62,10 +62,10 @@ test-suite simple-vec3-test
   ghc-options: -Wall -O2 -fllvm -rtsopts
 
   build-depends:
-    base             >= 4.6 && < 4.9,
-    tasty            == 0.10.*,
-    tasty-quickcheck == 0.8.*,
-    tasty-th         == 0.1.*,
+    base,
+    tasty,
+    tasty-quickcheck,
+    tasty-th,
     simple-vec3,
-    vector           == 0.10.*,
-    vector-th-unbox  == 0.2.*
+    vector,
+    vector-th-unbox
