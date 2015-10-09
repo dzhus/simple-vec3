@@ -45,7 +45,7 @@ instance Vec3 UVec3 where
                            deriving (Eq, Show)
 
 
-    fromXYZ v = UVec3 v
+    fromXYZ = UVec3
     {-# INLINE fromXYZ #-}
 
     toXYZ (UVec3 v) = v

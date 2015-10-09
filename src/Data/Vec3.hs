@@ -1,6 +1,4 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
-{-# LANGUAGE StandaloneDeriving #-}
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE TypeFamilies #-}
 
 {-|
@@ -30,7 +28,7 @@ import Test.QuickCheck
 
 -- | 'Vec3' implementation with 'Foreign.Storable.Storable' instance
 -- based on a single contiguous array storage scheme, suitable for use
--- with both "Data.Vector.Storable".
+-- with "Data.Vector.Storable".
 --
 -- 'Unbox' instance provides the required index transformations.
 --

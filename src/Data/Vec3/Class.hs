@@ -34,12 +34,12 @@ class Vec3 v where
 
     -- | Add two vectors.
     (<+>)          :: v -> v -> v
-    (<+>) v1 v2     = zipWith (+) v1 v2
+    (<+>)          = zipWith (+)
     {-# INLINE (<+>) #-}
 
     -- | Subtract two vectors.
     (<->)          :: v -> v -> v
-    (<->) v1 v2     = zipWith (-) v1 v2
+    (<->)          = zipWith (-)
     {-# INLINE (<->) #-}
 
     -- | Cross product.
@@ -140,7 +140,7 @@ class Vec3 v where
 
     -- | Transpose a vector and multiply it by another vector,
     -- producing a matrix.
-    -- 
+    --
     -- @
     -- [ v1x ]                       [ r11  r12  r13 ]
     -- [     ]                       [               ]
