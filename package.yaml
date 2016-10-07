@@ -1,0 +1,46 @@
+name:         simple-vec3
+version:      0.3.0.1
+synopsis:     Three-dimensional vectors of doubles with basic operations
+
+description:  A class of 3-vectors with a set of basic methods
+              for geometry operations on vectors and an
+              associated matrix type. Instances are provided
+              for use with "Data.Vector.Unboxed" and
+              "Data.Vector.Storable" as container types.
+
+github:       dzhus/simple-vec3
+license:      BSD3
+license-file: LICENSE
+author:       Dmitry Dzhus
+maintainer:   <dima@dzhus.org>
+category:     Math, Numerical
+
+ghc-options:
+  - -Wall
+
+dependencies:
+  - base < 5
+  - QuickCheck
+  - vector
+  - vector-th-unbox
+
+library:
+  source-dirs: src
+
+benchmarks:
+  simple-vec3-benchmark:
+    source-dirs: benchmark
+    main: Benchmark.hs
+    dependencies:
+      - criterion
+      - simple-vec3
+
+tests:
+  simple-vec3-test:
+    source-dirs: tests
+    main: Tests.hs
+    dependencies:
+      - simple-vec3
+      - tasty
+      - tasty-quickcheck
+      - tasty-th
