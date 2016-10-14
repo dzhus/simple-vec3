@@ -48,10 +48,10 @@ tests =
     (\(v :: SVec3) -> (v .^ 1 <~=> v))
   , testProperty
     "Distributivity wrt vector addition"
-    (\(a :: SVec3) b p -> ((a <+> b) .^ p <~=> a .^ p <+> b .^ p))
+    (\(a :: SVec3) b p -> ((a <+> b) .^ p) <~=> (a .^ p) <+> (b .^ p))
   , testProperty
     "Distributivity wrt scalar addition"
-    (\(a :: SVec3) p q -> (a .^ (p + q) <~=> a .^ p <+> a .^ q))
+    (\(a :: SVec3) p q -> (a .^ (p + q) <~=> (a .^ p) <+> (a .^ q)))
   , testProperty
     "Subtraction definition"
     (\(a :: SVec3) b -> (a <+> invert b <~=> a <-> b))
