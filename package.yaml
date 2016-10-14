@@ -10,7 +10,6 @@ description:  A class of 3-vectors with a set of basic methods
 
 github:       dzhus/simple-vec3
 license:      BSD3
-license-file: LICENSE
 author:       Dmitry Dzhus
 maintainer:   <dima@dzhus.org>
 category:     Math, Numerical
