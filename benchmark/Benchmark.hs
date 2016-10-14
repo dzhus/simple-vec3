@@ -26,12 +26,12 @@ bigN = n * 10
 
 
 -- Access to whole elements
-testWhole :: (Show a, Vec3 a, VG.Vector v a) => v a -> v a -> Benchmarkable
+testWhole :: (Vec3 a, VG.Vector v a) => v a -> v a -> Benchmarkable
 testWhole v v2 = (uncurry $ VG.zipWith (<+>)) `whnf` (v, v2)
 
 
 -- Access to x components of elements
-testComp :: (Show a, Vec3 a, VG.Vector v a, VG.Vector v Double) => v a -> v a -> Benchmarkable
+testComp :: (Vec3 a, VG.Vector v a, VG.Vector v Double) => v a -> v a -> Benchmarkable
 testComp v v' = (uncurry $ VG.zipWith foo) `whnf` (v, v')
   where
     foo v1 v2 = x1 + x2
@@ -41,7 +41,7 @@ testComp v v' = (uncurry $ VG.zipWith foo) `whnf` (v, v')
 
 
 -- zipWith using generic dot product
-testDotM :: (Show a, Vec3 a, VG.Vector v a, VG.Vector v Double) => v a -> v a -> Benchmarkable
+testDotM :: (Vec3 a, VG.Vector v a, VG.Vector v Double) => v a -> v a -> Benchmarkable
 testDotM v v2 = (uncurry $ VG.zipWith dotM') `whnf` (v, v2)
   where
     o = fromXYZ oXYZ
