@@ -1,18 +1,18 @@
-name:         simple-vec3
-version:      "0.2"
-synopsis:     Three-dimensional vectors of doubles with basic operations
+name:        simple-vec3
+version:     "0.2"
+synopsis:    Three-dimensional vectors of doubles with basic operations
 
-description:  A class of 3-vectors with a set of basic methods
-              for geometry operations on vectors and an
-              associated matrix type. Instances are provided
-              for use with "Data.Vector.Unboxed" and
-              "Data.Vector.Storable" as container types.
+description: A class of 3-vectors with a set of basic methods
+             for geometry operations on vectors and an
+             associated matrix type. Instances are provided
+             for use with "Data.Vector.Unboxed" and
+             "Data.Vector.Storable" as container types.
 
-github:       dzhus/simple-vec3
-license:      BSD3
-author:       Dmitry Dzhus
-maintainer:   <dima@dzhus.org>
-category:     Math, Numerical
+github:      dzhus/simple-vec3
+license:     BSD3
+author:      Dmitry Dzhus
+maintainer:  dima@dzhus.org
+category:    Math, Numerical
 
 ghc-options:
   - -Wall
