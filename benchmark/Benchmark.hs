@@ -102,32 +102,32 @@ btv' = VG.replicate bigN $ fromXYZ oXYZ'
 
 main :: IO ()
 main = defaultMain
-       [ bgroup "zipWith"
+       [ bgroup "zipWith <+>"
                     [ bench "SVec/Storable"           $ testWhole sv sv'
                     , bench "UVec/Unboxed"            $ testWhole tv tv'
                     , bench "UVec/Unboxed/Contiguous" $ testWhole cv cv'
                     ]
-       , bgroup "zipWith-by-x"
+       , bgroup "zipWith-by-x +"
                     [ bench "SVec/Storable"           $ testComp sv sv'
                     , bench "UVec/Unboxed"            $ testComp tv tv'
                     , bench "UVec/Unboxed/Contiguous" $ testComp cv cv'
                     ]
-       , bgroup "zipWith-dotM"
+       , bgroup "zipWith dotM"
                     [ bench "SVec/Storable"           $ testDotM sv sv'
                     , bench "UVec/Unboxed"            $ testDotM tv tv'
                     , bench "UVec/Unboxed/Contiguous" $ testDotM cv cv'
                     ]
-       , bgroup "zipWith 10M"
+       , bgroup "zipWith <+> 1M"
                     [ bench "SVec/Storable"           $ testWhole bsv bsv'
                     , bench "UVec/Unboxed"            $ testWhole btv btv'
                     , bench "UVec/Unboxed/Contiguous" $ testWhole bcv bcv'
                     ]
-       , bgroup "zipWith-by-x 10M"
+       , bgroup "zipWith-by-x + 1M"
                     [ bench "SVec/Storable"           $ testComp bsv bsv'
                     , bench "UVec/Unboxed"            $ testComp btv btv'
                     , bench "UVec/Unboxed/Contiguous" $ testComp bcv bcv'
                     ]
-       , bgroup "zipWith-dotM 10M"
+       , bgroup "zipWith dotM 1M"
                     [ bench "SVec/Storable"           $ testDotM bsv bsv'
                     , bench "UVec/Unboxed"            $ testDotM btv btv'
                     , bench "UVec/Unboxed/Contiguous" $ testDotM bcv bcv'
