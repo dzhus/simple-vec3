@@ -12,6 +12,9 @@ author:      Dmitry Dzhus
 maintainer:  dima@dzhus.org
 category:    Math, Numerical
 
+extra-source-files:
+  - CHANGELOG.md
+
 ghc-options:
   - -Wall
   - -Wcompat
