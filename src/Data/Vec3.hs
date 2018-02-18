@@ -35,9 +35,9 @@ import Test.QuickCheck
 -- 'Unbox' instance provides the required index transformations.
 --
 -- @
--- interface: [d1 x   y   z  ; d2 x   y   z  ...], length = N = M / 3
+-- interface: [v1 x   y   z  ; v2 x   y   z  ...], length = N = M / 3
 --                |   |   |       |   |   |
--- storage:   [  d1x d2y d2z ;   d2x d2y d2z ...], length = M
+-- storage:   [  v1x v2y v2z ;   v2x v2y v2z ...], length = M
 -- @
 data SVec3 = SVec3 !CDouble !CDouble !CDouble
              deriving (Eq, Show)

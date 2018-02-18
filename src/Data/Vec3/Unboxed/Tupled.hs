@@ -21,12 +21,15 @@ import Data.Vec3.Class
 -- vector of tuples as a tuple of vectors.
 --
 -- @
--- interface:  [d1 (x, y, z); d2 (x, y, z) ...], length = N
+-- interface:  [v1 (x, y, z); v2 (x, y, z) ...], length = N
 --                  |  |  |       |  |  |
--- storage(x): [d1x-+  |  | ; d2x-+  |  |  ...], length = N
--- storage(y): [d1y----+  | ; d2y----+  |  ...], length = N
--- storage(z): [d1z-------+ ; d2z-------+  ...], length = N
+-- storage(x): [v1x-+  |  | ; v2x-+  |  |  ...], length = N
+-- storage(y): [v1y----+  | ; v2y----+  |  ...], length = N
+-- storage(z): [v1z-------+ ; v2z-------+  ...], length = N
 -- @
+--
+-- You almost definitely want to use "Data.Vec3.Unboxed.UVec3" instead
+-- as it has better performance.
 newtype TUVec3 = TUVec3 (Double, Double, Double)
                deriving (Eq, Show)
 
