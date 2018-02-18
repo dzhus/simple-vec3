@@ -45,6 +45,8 @@ testDotM v v2 = whnf (uncurry $ VG.zipWith dotM') (v, v2)
     dotM' e1 e2 = dotM e1 e2 m
 
 
+testNormalize :: (Vec3 a, VG.Vector v a) => v a -> Benchmarkable
+testNormalize = whnf (VG.map normalize)
 
 
 -- Note that source arrays are not forced in test functions.
@@ -90,5 +92,9 @@ main = defaultMain
                     , bench "UVec/Unboxed (Contiguous)" $ testDotM cv cv'
                     , bench "TUVec/Unboxed (Tupled)"    $ testDotM tv tv'
                     ]
+       , bgroup "normalize"
+                    [ bench "SVec/Storable"             $ testNormalize sv
+                    , bench "UVec/Unboxed (Contiguous)" $ testNormalize cv
+                    , bench "TUVec/Unboxed (Tupled)"    $ testNormalize tv
                     ]
        ]
