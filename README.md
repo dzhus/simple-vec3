@@ -6,7 +6,7 @@
 
 *Simple* three-dimensional vectors of doubles with basic vector and
 matrix operations, supporting `Data.Vector.Unboxed` and
-`Data.Vector.Storable` class.
+`Data.Vector.Storable`.
 
 Please consult the [Hackage page for simple-vec3][hackage-doc] for full
 documentation.
