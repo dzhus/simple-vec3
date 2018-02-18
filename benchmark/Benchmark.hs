@@ -77,24 +77,14 @@ tv' = VG.replicate n $ fromXYZ oXYZ'
 
 main :: IO ()
 main = defaultMain
-       [ bgroup "zipWith-add"
-                    [ bench "SVec/Storable"             $ testWhole sv sv'
-                    , bench "UVec/Unboxed (Contiguous)" $ testWhole cv cv'
-                    , bench "TUVec/Unboxed (Tupled)"    $ testWhole tv tv'
-                    ]
-       , bgroup "zipWith-by-x-add"
-                    [ bench "SVec/Storable"             $ testComp sv sv'
-                    , bench "UVec/Unboxed (Contiguous)" $ testComp cv cv'
-                    , bench "TUVec/Unboxed (Tupled)"    $ testComp tv tv'
-                    ]
-       , bgroup "zipWith-dotM"
-                    [ bench "SVec/Storable"             $ testDotM sv sv'
-                    , bench "UVec/Unboxed (Contiguous)" $ testDotM cv cv'
-                    , bench "TUVec/Unboxed (Tupled)"    $ testDotM tv tv'
-                    ]
-       , bgroup "normalize"
-                    [ bench "SVec/Storable"             $ testNormalize sv
-                    , bench "UVec/Unboxed (Contiguous)" $ testNormalize cv
-                    , bench "TUVec/Unboxed (Tupled)"    $ testNormalize tv
-                    ]
+       [ bgroup "SVec/Storable"             $ mkGroup sv sv'
+       , bgroup "UVec/Unboxed (Contiguous)" $ mkGroup cv cv'
+       , bgroup "TUVec/Unboxed (Tupled)"    $ mkGroup tv tv'
        ]
+  where
+    mkGroup v1 v2 =
+      [ bench "zipWith-add"      $ testWhole v1 v2
+      , bench "zipWith-by-x-add" $ testComp v1 v2
+      , bench "zipWith-dotM"     $ testDotM v1 v2
+      , bench "normalize"        $ testNormalize v1
+      ]
