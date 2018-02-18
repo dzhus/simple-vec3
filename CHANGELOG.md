@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.1] - 2018-02-18
+
+### Added
+
+- `Eq` and `Show` instances for `Matrix CVec3`
+
 ## [0.3] - 2018-02-18
 
 ### Added
@@ -42,6 +48,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.3.1]:   https://github.com/dzhus/simple-vec3/compare/0.3...0.3.1
 [0.3]:     https://github.com/dzhus/simple-vec3/compare/0.2...0.3
 [0.2]:     https://github.com/dzhus/simple-vec3/compare/0.1.0.1...0.2
 [0.1.0.1]: https://github.com/dzhus/simple-vec3/compare/0.1.0.0...0.1.0.1

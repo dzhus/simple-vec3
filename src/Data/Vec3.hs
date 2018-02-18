@@ -52,7 +52,8 @@ data CVec3 = CVec3 !Double !Double !Double
 
 
 instance Vec3 CVec3 where
-    newtype Matrix CVec3 = UMatrix (CVec3, CVec3, CVec3)
+    newtype Matrix CVec3 = TMatrix (CVec3, CVec3, CVec3)
+                           deriving (Eq, Show)
 
     fromXYZ (x, y, z) = CVec3 x y z
     {-# INLINE fromXYZ #-}
@@ -60,10 +61,10 @@ instance Vec3 CVec3 where
     toXYZ (CVec3 x y z) = (x, y, z)
     {-# INLINE toXYZ #-}
 
-    fromRows (r1, r2, r3) = UMatrix (r1, r2, r3)
+    fromRows (r1, r2, r3) = TMatrix (r1, r2, r3)
     {-# INLINE fromRows #-}
 
-    toRows (UMatrix (r1, r2, r3)) = (r1, r2, r3)
+    toRows (TMatrix (r1, r2, r3)) = (r1, r2, r3)
     {-# INLINE toRows #-}
 
 
