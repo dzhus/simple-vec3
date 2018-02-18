@@ -22,14 +22,15 @@ ghc-options:
 
 dependencies:
   - base < 5
-  - QuickCheck
-  - vector
-  - vector-th-unbox
 
 library:
   source-dirs: src
   other-modules:
     - Data.Vec3.Tupled
+  dependencies:
+    - QuickCheck
+    - vector
+    - vector-th-unbox
 
 benchmarks:
   simple-vec3-benchmark:
@@ -38,6 +39,7 @@ benchmarks:
     dependencies:
       - criterion
       - simple-vec3
+      - vector
 
 tests:
   simple-vec3-test:
@@ -47,4 +49,3 @@ tests:
       - simple-vec3
       - tasty
       - tasty-quickcheck
-      - tasty-th
