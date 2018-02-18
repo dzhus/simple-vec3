@@ -15,7 +15,7 @@ module Data.Vec3
 
 where
 
-import Prelude hiding (reverse)
+import Prelude
 
 import Foreign
 import Foreign.C.Types

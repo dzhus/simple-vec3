@@ -9,7 +9,7 @@ module Data.Vec3.Unboxed
 
 where
 
-import Prelude hiding (reverse)
+import Prelude
 
 import Data.Vector.Unboxed.Deriving
 

@@ -16,7 +16,7 @@ module Data.Vec3.Unboxed.Contiguous
 
 where
 
-import Prelude hiding (reverse)
+import Prelude
 
 import Control.Monad
 
