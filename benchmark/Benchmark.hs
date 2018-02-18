@@ -18,11 +18,7 @@ oXYZ' = (2, 12, 85.06)
 
 
 n :: Int
-n = 100000
-
-
-bigN :: Int
-bigN = n * 10
+n = 10000000
 
 
 -- Access to whole elements
@@ -49,86 +45,50 @@ testDotM v v2 = whnf (uncurry $ VG.zipWith dotM') (v, v2)
     dotM' e1 e2 = dotM e1 e2 m
 
 
+
+
 -- Note that source arrays are not forced in test functions.
 
-tv :: VU.Vector TUVec3
-tv = VG.replicate n $ fromXYZ oXYZ
+sv :: VS.Vector SVec3
+sv = VG.replicate n $ fromXYZ oXYZ
 
 
 cv :: VU.Vector UVec3
 cv = VG.replicate n $ fromXYZ oXYZ
 
 
-sv :: VS.Vector SVec3
-sv = VG.replicate n $ fromXYZ oXYZ
-
-
-tv' :: VU.Vector TUVec3
-tv' = VG.replicate n $ fromXYZ oXYZ'
-
-
-cv' :: VU.Vector UVec3
-cv' = VG.replicate n $ fromXYZ oXYZ'
+tv :: VU.Vector TUVec3
+tv = VG.replicate n $ fromXYZ oXYZ
 
 
 sv' :: VS.Vector SVec3
 sv' = VG.replicate n $ fromXYZ oXYZ'
 
 
-bsv :: VS.Vector SVec3
-bsv = VG.replicate bigN $ fromXYZ oXYZ
+cv' :: VU.Vector UVec3
+cv' = VG.replicate n $ fromXYZ oXYZ'
 
 
-bcv :: VU.Vector UVec3
-bcv = VG.replicate bigN $ fromXYZ oXYZ
-
-
-btv :: VU.Vector TUVec3
-btv = VG.replicate bigN $ fromXYZ oXYZ
-
-
-bsv' :: VS.Vector SVec3
-bsv' = VG.replicate bigN $ fromXYZ oXYZ'
-
-
-bcv' :: VU.Vector UVec3
-bcv' = VG.replicate bigN $ fromXYZ oXYZ'
-
-
-btv' :: VU.Vector TUVec3
-btv' = VG.replicate bigN $ fromXYZ oXYZ'
+tv' :: VU.Vector TUVec3
+tv' = VG.replicate n $ fromXYZ oXYZ'
 
 
 main :: IO ()
 main = defaultMain
-       [ bgroup "zipWith <+>"
-                    [ bench "SVec/Storable"           $ testWhole sv sv'
-                    , bench "UVec/Unboxed/Tupled"     $ testWhole tv tv'
-                    , bench "UVec/Unboxed/Contiguous" $ testWhole cv cv'
+       [ bgroup "zipWith-add"
+                    [ bench "SVec/Storable"             $ testWhole sv sv'
+                    , bench "UVec/Unboxed (Contiguous)" $ testWhole cv cv'
+                    , bench "TUVec/Unboxed (Tupled)"    $ testWhole tv tv'
                     ]
-       , bgroup "zipWith-by-x +"
-                    [ bench "SVec/Storable"           $ testComp sv sv'
-                    , bench "UVec/Unboxed/Tupled"     $ testComp tv tv'
-                    , bench "UVec/Unboxed/Contiguous" $ testComp cv cv'
+       , bgroup "zipWith-by-x-add"
+                    [ bench "SVec/Storable"             $ testComp sv sv'
+                    , bench "UVec/Unboxed (Contiguous)" $ testComp cv cv'
+                    , bench "TUVec/Unboxed (Tupled)"    $ testComp tv tv'
                     ]
-       , bgroup "zipWith dotM"
-                    [ bench "SVec/Storable"           $ testDotM sv sv'
-                    , bench "UVec/Unboxed/Tupled"     $ testDotM tv tv'
-                    , bench "UVec/Unboxed/Contiguous" $ testDotM cv cv'
+       , bgroup "zipWith-dotM"
+                    [ bench "SVec/Storable"             $ testDotM sv sv'
+                    , bench "UVec/Unboxed (Contiguous)" $ testDotM cv cv'
+                    , bench "TUVec/Unboxed (Tupled)"    $ testDotM tv tv'
                     ]
-       , bgroup "zipWith <+> 1M"
-                    [ bench "SVec/Storable"           $ testWhole bsv bsv'
-                    , bench "UVec/Unboxed/Tupled"     $ testWhole btv btv'
-                    , bench "UVec/Unboxed/Contiguous" $ testWhole bcv bcv'
-                    ]
-       , bgroup "zipWith-by-x + 1M"
-                    [ bench "SVec/Storable"           $ testComp bsv bsv'
-                    , bench "UVec/Unboxed/Tupled"     $ testComp btv btv'
-                    , bench "UVec/Unboxed/Contiguous" $ testComp bcv bcv'
-                    ]
-       , bgroup "zipWith dotM 1M"
-                    [ bench "SVec/Storable"           $ testDotM bsv bsv'
-                    , bench "UVec/Unboxed/Tupled"     $ testDotM btv btv'
-                    , bench "UVec/Unboxed/Contiguous" $ testDotM bcv bcv'
                     ]
        ]
