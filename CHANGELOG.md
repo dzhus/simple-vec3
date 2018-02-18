@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+- `Data.Vec3.Unboxed.Contiguous` is now again `Data.Vec3.Unboxed`
+
+- `Data.Vec3.Unboxed` is now `Data.Vec3.Unboxed.Tupled`
+
 ## [0.2] - 2016-10-14
 
 ### Added

@@ -11,6 +11,7 @@ module Data.Vec3
     ( Vec3(..)
     , SVec3(..)
     , UVec3(..)
+    , TUVec3(..)
     )
 
 where
@@ -22,6 +23,7 @@ import Foreign.C.Types
 
 import Data.Vec3.Class
 import Data.Vec3.Unboxed
+import Data.Vec3.Unboxed.Tupled
 
 import Test.QuickCheck
 
