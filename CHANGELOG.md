@@ -2,9 +2,20 @@
 
 ## [Unreleased]
 
-- `Data.Vec3.Unboxed.Contiguous` is now again `Data.Vec3.Unboxed`
+### Changed
 
-- `Data.Vec3.Unboxed` is now `Data.Vec3.Unboxed.Tupled`
+- `Data.Vec3.Unboxed.Contiguous` is now again `Data.Vec3.Unboxed`.
+  `UVec3` was merged with `SVec3` and renamed to `CVec3`.
+
+- `Data.Vec3.Unboxed` is now `Data.Vec3.Tupled` and renamed to
+  `TVec3`.
+
+- Benchmarks were reorganized to work well with Criterion group
+  coloring
+
+### Removed
+
+- `SVec3` (merged into `CVec3`)
 
 ## [0.2] - 2016-10-14
 

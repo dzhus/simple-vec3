@@ -51,35 +51,35 @@ testNormalize = whnf (VG.map normalize)
 
 -- Note that source arrays are not forced in test functions.
 
-sv :: VS.Vector SVec3
-sv = VG.replicate n $ fromXYZ oXYZ
+csv :: VS.Vector CVec3
+csv = VG.replicate n $ fromXYZ oXYZ
 
 
-cv :: VU.Vector UVec3
-cv = VG.replicate n $ fromXYZ oXYZ
+cuv :: VU.Vector CVec3
+cuv = VG.replicate n $ fromXYZ oXYZ
 
 
-tv :: VU.Vector TUVec3
+tv :: VU.Vector TVec3
 tv = VG.replicate n $ fromXYZ oXYZ
 
 
-sv' :: VS.Vector SVec3
-sv' = VG.replicate n $ fromXYZ oXYZ'
+csv' :: VS.Vector CVec3
+csv' = VG.replicate n $ fromXYZ oXYZ'
 
 
-cv' :: VU.Vector UVec3
-cv' = VG.replicate n $ fromXYZ oXYZ'
+cuv' :: VU.Vector CVec3
+cuv' = VG.replicate n $ fromXYZ oXYZ'
 
 
-tv' :: VU.Vector TUVec3
+tv' :: VU.Vector TVec3
 tv' = VG.replicate n $ fromXYZ oXYZ'
 
 
 main :: IO ()
 main = defaultMain
-       [ bgroup "SVec/Storable"             $ mkGroup sv sv'
-       , bgroup "UVec/Unboxed (Contiguous)" $ mkGroup cv cv'
-       , bgroup "TUVec/Unboxed (Tupled)"    $ mkGroup tv tv'
+       [ bgroup "CVec3/Storable" $ mkGroup csv csv'
+       , bgroup "CVec3/Unboxed"  $ mkGroup cuv cuv'
+       , bgroup "TVec3/Unboxed"  $ mkGroup tv tv'
        ]
   where
     mkGroup v1 v2 =

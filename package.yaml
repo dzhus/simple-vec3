@@ -23,6 +23,8 @@ dependencies:
 
 library:
   source-dirs: src
+  other-modules:
+    - Data.Vec3.Tupled
 
 benchmarks:
   simple-vec3-benchmark:

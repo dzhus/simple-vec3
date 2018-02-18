@@ -11,4 +11,11 @@ matrix operations, supporting `Data.Vector.Unboxed` and
 Please consult the [Hackage page for simple-vec3][hackage-doc] for full
 documentation.
 
+The package provides two different implementations for `Vec3` type
+class, which differ in storage scheme. Benchmarks are included for
+both. You most likely want to use `CVec3` which is based on contiguous
+storage scheme and offers the best performance.
+
+![simple-vec3 benchmarks](benchmark.png)
+
 [hackage-doc]: https://hackage.haskell.org/package/simple-vec3/docs/Data-Vec3.html
