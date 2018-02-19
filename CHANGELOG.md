@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Doctests
+
 ## [0.3.1] - 2018-02-18
 
 ### Added

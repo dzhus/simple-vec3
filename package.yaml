@@ -49,3 +49,11 @@ tests:
       - simple-vec3
       - tasty
       - tasty-quickcheck
+
+  simple-vec3-doctests:
+    source-dirs: tests
+    main: doctest-driver.hs
+    ghc-options: -threaded
+    dependencies:
+      - doctest
+      - doctest-discover >= 0.1.0.8

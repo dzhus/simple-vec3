@@ -13,7 +13,11 @@ storage scheme and offers the best performance.
 -}
 
 module Data.Vec3
-    ( Vec3(..)
+    ( -- * Examples
+      -- $examples
+      -- * Type class
+      Vec3(..)
+      -- * Implementations
     , CVec3(..)
     , TVec3(..)
     )
@@ -28,11 +32,48 @@ import Foreign.C.Types
 import Data.Vector.Unboxed as VU
 import Data.Vector.Generic as VG
 import Data.Vector.Generic.Mutable as VGM
-import Test.QuickCheck
+import Test.QuickCheck (Arbitrary(..))
 
 import Data.Vec3.Class
 
 import Data.Vec3.Tupled
+
+
+-- $examples
+--
+-- >>> let v1 = CVec3 (-1) 0.0   0.2
+-- >>> let v2 = CVec3   1  2.3   5.0
+-- >>> let v3 = CVec3   1    1 (-0.2)
+--
+-- Add two vectors:
+--
+-- >>> v1 <+> v2
+-- CVec3 0.0 2.3 5.2
+--
+-- Dot product:
+--
+-- >>> v1 .* v2
+-- 0.0
+--
+-- Multiply by a scalar:
+--
+-- >>> v1 .^ 5
+-- CVec3 (-5.0) 0.0 1.0
+--
+-- Cross product:
+--
+-- >>> v1 >< v3
+-- CVec3 (-0.2) 0.0 (-1.0)
+--
+-- Matrix-vector product:
+--
+-- >>> diag 2 `mxv` v2
+-- CVec3 2.0 4.6 10.0
+--
+-- Interface with tuples:
+--
+-- >>> toXYZ v2
+-- (1.0,2.3,5.0)
 
 
 -- | 'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' and
