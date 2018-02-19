@@ -1,12 +1,18 @@
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE TypeSynonymInstances #-}
 
 module Data.Vec3.Class
     ( Vec3(..)
+    , TVec3
     )
 
 where
 
 import Prelude hiding (zipWith)
+
+import Test.QuickCheck (Arbitrary(..))
 
 -- | Three-dimensional vector, with an associated matrix type.
 class Vec3 v where
@@ -164,3 +170,30 @@ class Vec3 v where
                         (r11, r12, r13) = toRows m1
                         (r21, r22, r23) = toRows m2
     {-# INLINE addM #-}
+
+
+-- | 'Vec3' implementation with 'Data.Vector.Unboxed.Unbox' instance
+-- based on default Unbox instance for tuples of arrays, which wraps a
+-- vector of tuples as a tuple of vectors.
+--
+-- @
+-- interface:  [v1 (x, y, z); v2 (x, y, z) ...], length = N
+--                  |  |  |       |  |  |
+-- storage(x): [v1x-+  |  | ; v2x-+  |  |  ...], length = N
+-- storage(y): [v1y----+  | ; v2y----+  |  ...], length = N
+-- storage(z): [v1z-------+ ; v2z-------+  ...], length = N
+-- @
+--
+-- You almost definitely want to use 'Data.Vec3.CVec3' instead as it has better
+-- performance.
+type TVec3 = (Double, Double, Double)
+
+instance Vec3 TVec3 where
+  newtype Matrix TVec3 = TMatrix { unTMatrix :: (TVec3, TVec3, TVec3) }
+                       deriving (Arbitrary, Eq, Show)
+
+  fromXYZ = id
+  toXYZ   = id
+
+  fromRows = TMatrix
+  toRows   = unTMatrix

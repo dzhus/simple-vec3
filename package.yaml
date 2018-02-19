@@ -26,12 +26,9 @@ dependencies:
 
 library:
   source-dirs: src
-  other-modules:
-    - Data.Vec3.Tupled
   dependencies:
     - QuickCheck
     - vector
-    - vector-th-unbox
 
 benchmarks:
   simple-vec3-benchmark:

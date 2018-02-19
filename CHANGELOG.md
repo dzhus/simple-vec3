@@ -6,6 +6,10 @@
 
 - Doctests
 
+### Changed
+
+- `TVec3` is now just a type synonym for `(Double, Double, Double)`
+
 ## [0.3.1] - 2018-02-18
 
 ### Added
