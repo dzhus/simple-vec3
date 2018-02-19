@@ -44,7 +44,7 @@ benchmarks:
 tests:
   simple-vec3-test:
     source-dirs: tests
-    main: Tests.hs
+    main: Main.hs
     dependencies:
       - simple-vec3
       - tasty
