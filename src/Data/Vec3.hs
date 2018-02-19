@@ -1,3 +1,4 @@
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 
@@ -90,7 +91,7 @@ data CVec3 = CVec3 !Double !Double !Double
 
 
 instance Vec3 CVec3 where
-    newtype Matrix CVec3 = TMatrix (CVec3, CVec3, CVec3)
+    newtype Matrix CVec3 = CMatrix (CVec3, CVec3, CVec3)
                            deriving (Eq, Show)
 
     fromXYZ (x, y, z) = CVec3 x y z
@@ -99,10 +100,10 @@ instance Vec3 CVec3 where
     toXYZ (CVec3 x y z) = (x, y, z)
     {-# INLINE toXYZ #-}
 
-    fromRows (r1, r2, r3) = TMatrix (r1, r2, r3)
+    fromRows (r1, r2, r3) = CMatrix (r1, r2, r3)
     {-# INLINE fromRows #-}
 
-    toRows (TMatrix (r1, r2, r3)) = (r1, r2, r3)
+    toRows (CMatrix (r1, r2, r3)) = (r1, r2, r3)
     {-# INLINE toRows #-}
 
 
@@ -212,3 +213,13 @@ instance Arbitrary CVec3 where
 
   shrink (CVec3 x y z) =
     Prelude.map fromXYZ $ shrink (x, y, z)
+
+instance Arbitrary (Matrix CVec3) where
+  arbitrary = do
+    r1 <- arbitrary
+    r2 <- arbitrary
+    r3 <- arbitrary
+    return $ fromRows (r1, r2, r3)
+
+  shrink (CMatrix (r1, r2, r3)) =
+    Prelude.map fromRows $ shrink (r1, r2, r3)
