@@ -1,5 +1,5 @@
 name:        simple-vec3
-version:     "0.3.1"
+version:     "0.4"
 synopsis:    Three-dimensional vectors of doubles with basic operations
 
 description: Simple three-dimensional vectors of doubles with basic
