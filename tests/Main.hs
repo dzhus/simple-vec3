@@ -48,7 +48,7 @@ tests _ =
     "Identity element of addition (zero): v + 0 = v"
     (\(v :: ty) -> (v <+> origin <~=> v))
   , testProperty
-    "Inverse elements of addition: v + (-v) = 0"
+    "Inverse element of addition: v + (-v) = 0"
     (\(v :: ty) -> (v <+> invert v <~=> (origin :: ty)))
   , testProperty
     "Compatibility of scalar and field multiplication"
