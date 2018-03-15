@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0.1] - 2018-03-17
+
+### Changed
+
+- GHC 8.4.x support
+
 ## [0.4] - 2018-02-20
 
 ### Added
@@ -58,6 +64,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.4.0.1]: https://github.com/dzhus/simple-vec3/compare/0.4...0.4.0.1
 [0.4]:     https://github.com/dzhus/simple-vec3/compare/0.3.1...0.4
 [0.3.1]:   https://github.com/dzhus/simple-vec3/compare/0.3...0.3.1
 [0.3]:     https://github.com/dzhus/simple-vec3/compare/0.2...0.3
