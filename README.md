@@ -44,4 +44,18 @@ storage scheme and offers the best performance.
 
 ![simple-vec3 benchmarks](benchmark.png)
 
+## Alternatives
+
+This package was written to explore and benchmark different array
+storage schemes in Haskell, as supported by `vector` library. Several
+alternatives with more extensive APIs exist:
+
+- [AC-Vector][]
+
+- [GlomeVec][]
+
 [hackage-doc]: https://hackage.haskell.org/package/simple-vec3/docs/Data-Vec3.html
+
+[ac-vector]: https://hackage.haskell.org/package/AC-Vector
+
+[glomevec]: https://hackage.haskell.org/package/GlomeVec
