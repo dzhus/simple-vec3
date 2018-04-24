@@ -1,5 +1,5 @@
 name:        simple-vec3
-version:     "0.4.0.1"
+version:     "0.4.0.2"
 synopsis:    Three-dimensional vectors of doubles with basic operations
 
 description: Simple three-dimensional vectors of doubles with basic
@@ -54,4 +54,4 @@ tests:
     ghc-options: -threaded
     dependencies:
       - doctest
-      - doctest-discover >= 0.1.0.8
+      - doctest-driver-gen

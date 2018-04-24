@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0.2] - 2018-04-25
+
+### Changed
+
+- Use `doctest-driver-gen` to run doctests
+
 ## [0.4.0.1] - 2018-03-17
 
 ### Changed
@@ -64,6 +70,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.4.0.2]: https://github.com/dzhus/simple-vec3/compare/0.4.0.1...0.4.0.2
 [0.4.0.1]: https://github.com/dzhus/simple-vec3/compare/0.4...0.4.0.1
 [0.4]:     https://github.com/dzhus/simple-vec3/compare/0.3.1...0.4
 [0.3.1]:   https://github.com/dzhus/simple-vec3/compare/0.3...0.3.1
