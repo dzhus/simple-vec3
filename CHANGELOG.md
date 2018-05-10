@@ -76,6 +76,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.4.0.3]: https://github.com/dzhus/simple-vec3/compare/0.4.0.2...0.4.0.3
 [0.4.0.2]: https://github.com/dzhus/simple-vec3/compare/0.4.0.1...0.4.0.2
 [0.4.0.1]: https://github.com/dzhus/simple-vec3/compare/0.4...0.4.0.1
 [0.4]:     https://github.com/dzhus/simple-vec3/compare/0.3.1...0.4
