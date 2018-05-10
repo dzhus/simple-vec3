@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0.3] - 2018-05-10
+
+### Changed
+
+- Library dependencies bump
+
 ## [0.4.0.2] - 2018-04-25
 
 ### Changed
