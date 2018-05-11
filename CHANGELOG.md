@@ -4,13 +4,13 @@
 
 ### Changed
 
-- Library dependencies bump
+- Test suite dependencies bump
 
 ## [0.4.0.4] - 2018-05-11
 
 ### Changed
 
-- Library dependencies bump
+- Test suite dependencies bump
 
 ## [0.4.0.3] - 2018-05-10
 
