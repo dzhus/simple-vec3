@@ -1,5 +1,4 @@
-resolver: nightly-2018-05-11
+resolver: nightly-2018-05-12
 pvp-bounds: upper
 extra-deps:
 - tasty-1.1
-- tasty-quickcheck-0.10
