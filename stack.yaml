@@ -1,2 +1,4 @@
-resolver: nightly-2018-07-21
+resolver: nightly-2018-10-29
 pvp-bounds: upper
+extra-deps:
+- QuickCheck-2.12.6.1
