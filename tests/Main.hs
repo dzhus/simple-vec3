@@ -46,34 +46,34 @@ tests _ =
     (\(a :: ty) b c -> (a <+> b) <+> c <~=> a <+> (b <+> c))
   , testProperty
     "Identity element of addition (zero): v + 0 = v"
-    (\(v :: ty) -> (v <+> origin <~=> v))
+    (\(v :: ty) -> v <+> origin <~=> v)
   , testProperty
     "Inverse element of addition: v + (-v) = 0"
-    (\(v :: ty) -> (v <+> invert v <~=> (origin :: ty)))
+    (\(v :: ty) -> v <+> invert v <~=> (origin :: ty))
   , testProperty
     "Compatibility of scalar and field multiplication"
-    (\(v :: ty) p q -> (v .^ p .^ q <~=> v .^ (p * q)))
+    (\(v :: ty) p q -> v .^ p .^ q <~=> v .^ (p * q))
   , testProperty
     "Identity of scalar multiplication"
-    (\(v :: ty) -> (v .^ 1 <~=> v))
+    (\(v :: ty) -> v .^ 1 <~=> v)
   , testProperty
     "Distributivity wrt vector addition"
     (\(a :: ty) b p -> ((a <+> b) .^ p) <~=> (a .^ p) <+> (b .^ p))
   , testProperty
     "Distributivity wrt scalar addition"
-    (\(a :: ty) p q -> (a .^ (p + q) <~=> (a .^ p) <+> (a .^ q)))
+    (\(a :: ty) p q -> a .^ (p + q) <~=> (a .^ p) <+> (a .^ q))
   , testProperty
     "Subtraction definition"
-    (\(a :: ty) b -> (a <+> invert b <~=> a <-> b))
+    (\(a :: ty) b -> a <+> invert b <~=> a <-> b)
   , testProperty
     "Normalization"
-    (\(v :: ty) -> (v <~=> (origin :: ty) || norm (normalize v) ~= 1))
+    (\(v :: ty) -> v <~=> (origin :: ty) || norm (normalize v) ~= 1)
   , testProperty
     "Triangle inequality"
-    (\(a :: ty) b c -> (distance a b + distance b c >= distance a c))
+    (\(a :: ty) b c -> distance a b + distance b c >= distance a c)
   , testProperty
     "Diagonal matrix multiplication"
-    (\(v :: ty) (s :: Double) -> (diag s `mxv` v == v .^ s))
+    (\(v :: ty) (s :: Double) -> diag s `mxv` v == v .^ s)
   ]
 
 
