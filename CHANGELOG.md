@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0.10] - 2018-01-18
+
+### Changed
+
+- Test suite dependencies bump
+
 ## [0.4.0.9] - 2018-10-29
 
 ### Changed
@@ -112,6 +118,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.4.0.10]:https://github.com/dzhus/simple-vec3/compare/0.4.0.9...0.4.0.10
 [0.4.0.9]: https://github.com/dzhus/simple-vec3/compare/0.4.0.8...0.4.0.9
 [0.4.0.8]: https://github.com/dzhus/simple-vec3/compare/0.4.0.7...0.4.0.8
 [0.4.0.7]: https://github.com/dzhus/simple-vec3/compare/0.4.0.6...0.4.0.7
