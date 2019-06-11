@@ -41,11 +41,13 @@ class Vec3 v where
     (<+>)          :: v -> v -> v
     (<+>)          = zipWith (+)
     {-# INLINE (<+>) #-}
+    infixl 5 <+>
 
     -- | Subtract two vectors.
     (<->)          :: v -> v -> v
     (<->)          = zipWith (-)
     {-# INLINE (<->) #-}
+    infixl 5 <->
 
     -- | Cross product.
     (><)           :: v -> v -> v
@@ -55,18 +57,21 @@ class Vec3 v where
                       where
                         (x1, y1, z1) = toXYZ v1
                         (x2, y2, z2) = toXYZ v2
+    infixl 6 ><
 
     -- | Scale a vector.
     (.^)           :: v -> Double -> v
     (.^) v s        = fromXYZ (x * s, y * s, z * s)
                       where
                         (x, y, z) = toXYZ v
+    infixl 7 .^
 
     -- | Dot product.
     (.*)           :: v -> v -> Double
     (.*) v1 v2      = x + y + z
                       where
                         (x, y, z) = toXYZ $ zipWith (*) v1 v2
+    infixl 6 .*
 
     -- | Euclidean norm of a vector.
     norm           :: v -> Double
