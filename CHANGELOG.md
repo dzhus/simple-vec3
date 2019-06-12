@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6] - 2019-06-12
+
+### Changed
+
+- simple-vec3 operators now bind tighter than `*` for `Num`, so you
+  can write `2 * v .* d`.
+
 ## [0.5] - 2019-06-11
 
 ### Changed
@@ -127,6 +134,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.6]:     https://github.com/dzhus/simple-vec3/compare/0.5...0.6
 [0.5]:     https://github.com/dzhus/simple-vec3/compare/0.4.0.10...0.5
 [0.4.0.10]:https://github.com/dzhus/simple-vec3/compare/0.4.0.9...0.4.0.10
 [0.4.0.9]: https://github.com/dzhus/simple-vec3/compare/0.4.0.8...0.4.0.9
