@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.6.0.1] - 2020-06-04
+
+### Changed
+
+- Relaxed dependency version bounds
+
 ## [0.6] - 2019-06-12
 
 ### Changed
@@ -134,6 +140,7 @@
 
 ## [0.1.0.0] - 2012-12-05
 
+[0.6.0.1]:     https://github.com/dzhus/simple-vec3/compare/0.6...0.6.0.1
 [0.6]:     https://github.com/dzhus/simple-vec3/compare/0.5...0.6
 [0.5]:     https://github.com/dzhus/simple-vec3/compare/0.4.0.10...0.5
 [0.4.0.10]:https://github.com/dzhus/simple-vec3/compare/0.4.0.9...0.4.0.10
