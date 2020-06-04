@@ -1,6 +1,6 @@
 # simple-vec3
 
-[![Travis CI build status](https://travis-ci.org/dzhus/simple-vec3.svg)](https://travis-ci.org/dzhus/simple-vec3)
+[![Build & test](https://github.com/dzhus/simple-vec3/workflows/Build%20&%20test/badge.svg)](https://github.com/dzhus/simple-vec3/actions)
 [![Hackage](https://img.shields.io/hackage/v/simple-vec3.svg?colorB=5e5184&style=flat)](https://hackage.haskell.org/package/simple-vec3)
 [![Hackage deps](https://img.shields.io/hackage-deps/v/simple-vec3.svg)](http://packdeps.haskellers.com/feed?needle=simple-vec3)
 
