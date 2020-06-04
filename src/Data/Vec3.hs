@@ -25,8 +25,6 @@ module Data.Vec3
 
 where
 
-import Control.Monad
-
 import Foreign
 import Foreign.C.Types
 
@@ -129,7 +127,7 @@ instance VGM.MVector VU.MVector CVec3 where
     {-# INLINE basicOverlaps #-}
 
     basicUnsafeNew n =
-        MV_CVec3 `liftM` VGM.basicUnsafeNew (n * 3)
+        MV_CVec3 <$> VGM.basicUnsafeNew (n * 3)
     {-# INLINE basicUnsafeNew #-}
 
     basicUnsafeRead (MV_CVec3 v) i = do
@@ -152,11 +150,11 @@ instance VGM.MVector VU.MVector CVec3 where
 
 instance VG.Vector VU.Vector CVec3 where
     basicUnsafeFreeze (MV_CVec3 v) =
-        V_CVec3 `liftM` VG.basicUnsafeFreeze v
+        V_CVec3 <$> VG.basicUnsafeFreeze v
     {-# INLINE basicUnsafeFreeze #-}
 
     basicUnsafeThaw (V_CVec3 v) =
-        MV_CVec3 `liftM` VG.basicUnsafeThaw v
+        MV_CVec3 <$> VG.basicUnsafeThaw v
     {-# INLINE basicUnsafeThaw #-}
 
     basicLength (V_CVec3 v) = VG.basicLength v `quot` 3
